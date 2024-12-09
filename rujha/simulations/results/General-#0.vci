@@ -1,0 +1,3771 @@
+                                                                
+version 3
+run General-0-20241209-17:54:54-14940
+attr configname General
+attr datetime 20241209-17:54:54
+attr datetimef 20241209-175454
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network rujha
+attr processid 14940
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../../../inet-master/inet-master/images
+config network rujha
+config sim-time-limit 10s
+config **.client.numApps 1
+config **.client.app[0].typename TcpSessionApp
+config **.client.app[0].connectAddress "\"server\""
+config **.client.app[0].connectPort 1000
+config **.client.app[0].sendBytes 1MB
+config **.client1.numApps 1
+config **.client1.app[0].typename TcpSessionApp
+config **.client1.app[0].connectAddress "\"server\""
+config **.client1.app[0].connectPort 1001
+config **.client1.app[0].sendBytes 1MB
+config **.client2.numApps 1
+config **.client2.app[0].typename TcpSessionApp
+config **.client2.app[0].connectAddress "\"server\""
+config **.client2.app[0].connectPort 1002
+config **.client2.app[0].sendBytes 1MB
+config **.client3.numApps 1
+config **.client3.app[0].typename TcpSessionApp
+config **.client3.app[0].connectAddress "\"server\""
+config **.client3.app[0].connectPort 1003
+config **.client3.app[0].sendBytes 1MB
+config **.client4.numApps 1
+config **.client4.app[0].typename TcpSessionApp
+config **.client4.app[0].connectAddress "\"server\""
+config **.client4.app[0].connectPort 1004
+config **.client4.app[0].sendBytes 1MB
+config **.server.numApps 5
+config **.server.app[0].typename TcpEchoApp
+config **.server.app[0].localPort 1000
+config **.server.app[1].typename TcpEchoApp
+config **.server.app[1].localPort 1001
+config **.server.app[2].typename TcpEchoApp
+config **.server.app[2].localPort 1002
+config **.server.app[3].typename TcpEchoApp
+config **.server.app[3].localPort 1003
+config **.server.app[4].typename TcpEchoApp
+config **.server.app[4].localPort 1004
+
+vector 0 rujha.server.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 1 rujha.server.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 2 rujha.server.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 3 rujha.server.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 4 rujha.server.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 5 rujha.server.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 6 rujha.server.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 7 rujha.server.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 8 rujha.server.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 9 rujha.server.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 10 rujha.server.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 11 rujha.server.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 12 rujha.server.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 13 rujha.server.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 14 rujha.server.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 15 rujha.server.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 16 rujha.server.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 17 rujha.server.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 18 rujha.server.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 19 rujha.server.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 20 rujha.server.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 21 rujha.server.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 22 rujha.server.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 23 rujha.server.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 24 rujha.server.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 25 rujha.server.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 26 rujha.server.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 27 rujha.server.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 28 rujha.server.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 29 rujha.server.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 30 rujha.server.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 31 rujha.server.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 32 rujha.server.eth[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 33 rujha.server.eth[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 34 rujha.server.eth[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 35 rujha.server.eth[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 36 rujha.server.eth[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 37 rujha.server.eth[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 38 rujha.server.eth[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 39 rujha.server.eth[1].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 40 rujha.server.eth[1].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 41 rujha.server.eth[1].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 42 rujha.server.eth[1].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 43 rujha.server.eth[1].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 44 rujha.server.eth[1].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 45 rujha.server.eth[1].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 46 rujha.server.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 47 rujha.server.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 48 rujha.server.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 49 rujha.server.eth[1].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 50 rujha.server.eth[1].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 51 rujha.server.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 52 rujha.server.eth[1].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 53 rujha.server.eth[1].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 54 rujha.server.eth[1].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 55 rujha.server.eth[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 56 rujha.server.eth[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 57 rujha.server.eth[2].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 58 rujha.server.eth[2].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 59 rujha.server.eth[2].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 60 rujha.server.eth[2].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 61 rujha.server.eth[2].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 62 rujha.server.eth[2].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 63 rujha.server.eth[2].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 64 rujha.server.eth[2].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 65 rujha.server.eth[2].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 66 rujha.server.eth[2].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 67 rujha.server.eth[2].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 68 rujha.server.eth[2].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 69 rujha.server.eth[2].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 70 rujha.server.eth[2].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 71 rujha.server.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 72 rujha.server.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 73 rujha.server.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 74 rujha.server.eth[2].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 75 rujha.server.eth[2].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 76 rujha.server.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 77 rujha.server.eth[2].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 78 rujha.server.eth[2].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 79 rujha.server.eth[2].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 80 rujha.server.eth[2] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 81 rujha.server.eth[2] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 82 rujha.server.eth[3].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 83 rujha.server.eth[3].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 84 rujha.server.eth[3].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 85 rujha.server.eth[3].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 86 rujha.server.eth[3].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 87 rujha.server.eth[3].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 88 rujha.server.eth[3].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 89 rujha.server.eth[3].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 90 rujha.server.eth[3].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 91 rujha.server.eth[3].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 92 rujha.server.eth[3].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 93 rujha.server.eth[3].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 94 rujha.server.eth[3].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 95 rujha.server.eth[3].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 96 rujha.server.eth[3].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 97 rujha.server.eth[3].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 98 rujha.server.eth[3].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 99 rujha.server.eth[3].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 100 rujha.server.eth[3].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 101 rujha.server.eth[3].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 102 rujha.server.eth[3].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 103 rujha.server.eth[3].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 104 rujha.server.eth[3].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 105 rujha.server.eth[3] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 106 rujha.server.eth[3] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 107 rujha.server.eth[4].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 108 rujha.server.eth[4].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 109 rujha.server.eth[4].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 110 rujha.server.eth[4].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 111 rujha.server.eth[4].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 112 rujha.server.eth[4].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 113 rujha.server.eth[4].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 114 rujha.server.eth[4].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 115 rujha.server.eth[4].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 116 rujha.server.eth[4].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 117 rujha.server.eth[4].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 118 rujha.server.eth[4].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 119 rujha.server.eth[4].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 120 rujha.server.eth[4].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 121 rujha.server.eth[4].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 122 rujha.server.eth[4].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 123 rujha.server.eth[4].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 124 rujha.server.eth[4].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 125 rujha.server.eth[4].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 126 rujha.server.eth[4].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 127 rujha.server.eth[4].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 128 rujha.server.eth[4].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 129 rujha.server.eth[4].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 130 rujha.server.eth[4] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 131 rujha.server.eth[4] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 132 rujha.server.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 133 rujha.server.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 134 rujha.server.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 135 rujha.server.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 136 rujha.server.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 137 rujha.server.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 138 rujha.server.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 139 rujha.server.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 140 rujha.server.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 141 rujha.server.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 142 rujha.server.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 143 rujha.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 144 rujha.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 145 rujha.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 146 rujha.server.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 147 rujha.server.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 148 rujha.server.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 149 rujha.server.app[1] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 150 rujha.server.app[1] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 151 rujha.server.app[1] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 152 rujha.server.app[2] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 153 rujha.server.app[2] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 154 rujha.server.app[2] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 155 rujha.server.app[3] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 156 rujha.server.app[3] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 157 rujha.server.app[3] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 158 rujha.server.app[4] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 159 rujha.server.app[4] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 160 rujha.server.app[4] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 161 rujha.client.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 162 rujha.client.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 163 rujha.client.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 164 rujha.client.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 165 rujha.client.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 166 rujha.client.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 167 rujha.client.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 168 rujha.client.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 169 rujha.client.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 170 rujha.client.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 171 rujha.client.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 172 rujha.client.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 173 rujha.client.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 174 rujha.client.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 175 rujha.client.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 176 rujha.client.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 177 rujha.client.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 178 rujha.client.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 179 rujha.client.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 180 rujha.client.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 181 rujha.client.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 182 rujha.client.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 183 rujha.client.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 184 rujha.client.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 185 rujha.client.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 186 rujha.client.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 187 rujha.client.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 188 rujha.client.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 189 rujha.client.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 190 rujha.client.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 191 rujha.client.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 192 rujha.client.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 193 rujha.client.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 194 rujha.client.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 195 rujha.client.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 196 rujha.client.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 197 rujha.client.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 198 rujha.client.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 199 rujha.client.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 200 rujha.client.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 201 rujha.client.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 202 rujha.client.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 203 rujha.client.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 204 rujha.client.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 205 rujha.client.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 206 rujha.client.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 207 rujha.client.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 208 rujha.client.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 209 rujha.client.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 210 rujha.client1.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 211 rujha.client1.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 212 rujha.client1.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 213 rujha.client1.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 214 rujha.client1.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 215 rujha.client1.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 216 rujha.client1.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 217 rujha.client1.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 218 rujha.client1.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 219 rujha.client1.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 220 rujha.client1.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 221 rujha.client1.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 222 rujha.client1.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 223 rujha.client1.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 224 rujha.client1.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 225 rujha.client1.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 226 rujha.client1.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 227 rujha.client1.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 228 rujha.client1.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 229 rujha.client1.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 230 rujha.client1.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 231 rujha.client1.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 232 rujha.client1.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 233 rujha.client1.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 234 rujha.client1.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 235 rujha.client1.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 236 rujha.client1.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 237 rujha.client1.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 238 rujha.client1.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 239 rujha.client1.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 240 rujha.client1.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 241 rujha.client1.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 242 rujha.client1.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 243 rujha.client1.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 244 rujha.client1.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 245 rujha.client1.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 246 rujha.client1.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 247 rujha.client1.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 248 rujha.client1.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 249 rujha.client1.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 250 rujha.client1.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 251 rujha.client1.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 252 rujha.client1.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 253 rujha.client1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 254 rujha.client1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 255 rujha.client1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 256 rujha.client1.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 257 rujha.client1.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 258 rujha.client1.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 259 rujha.client2.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 260 rujha.client2.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 261 rujha.client2.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 262 rujha.client2.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 263 rujha.client2.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 264 rujha.client2.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 265 rujha.client2.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 266 rujha.client2.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 267 rujha.client2.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 268 rujha.client2.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 269 rujha.client2.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 270 rujha.client2.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 271 rujha.client2.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 272 rujha.client2.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 273 rujha.client2.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 274 rujha.client2.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 275 rujha.client2.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 276 rujha.client2.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 277 rujha.client2.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 278 rujha.client2.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 279 rujha.client2.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 280 rujha.client2.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 281 rujha.client2.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 282 rujha.client2.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 283 rujha.client2.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 284 rujha.client2.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 285 rujha.client2.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 286 rujha.client2.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 287 rujha.client2.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 288 rujha.client2.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 289 rujha.client2.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 290 rujha.client2.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 291 rujha.client2.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 292 rujha.client2.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 293 rujha.client2.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 294 rujha.client2.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 295 rujha.client2.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 296 rujha.client2.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 297 rujha.client2.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 298 rujha.client2.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 299 rujha.client2.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 300 rujha.client2.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 301 rujha.client2.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 302 rujha.client2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 303 rujha.client2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 304 rujha.client2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 305 rujha.client2.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 306 rujha.client2.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 307 rujha.client2.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 308 rujha.client3.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 309 rujha.client3.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 310 rujha.client3.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 311 rujha.client3.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 312 rujha.client3.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 313 rujha.client3.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 314 rujha.client3.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 315 rujha.client3.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 316 rujha.client3.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 317 rujha.client3.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 318 rujha.client3.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 319 rujha.client3.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 320 rujha.client3.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 321 rujha.client3.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 322 rujha.client3.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 323 rujha.client3.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 324 rujha.client3.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 325 rujha.client3.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 326 rujha.client3.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 327 rujha.client3.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 328 rujha.client3.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 329 rujha.client3.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 330 rujha.client3.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 331 rujha.client3.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 332 rujha.client3.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 333 rujha.client3.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 334 rujha.client3.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 335 rujha.client3.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 336 rujha.client3.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 337 rujha.client3.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 338 rujha.client3.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 339 rujha.client3.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 340 rujha.client3.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 341 rujha.client3.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 342 rujha.client3.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 343 rujha.client3.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 344 rujha.client3.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 345 rujha.client3.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 346 rujha.client3.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 347 rujha.client3.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 348 rujha.client3.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 349 rujha.client3.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 350 rujha.client3.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 351 rujha.client3.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 352 rujha.client3.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 353 rujha.client3.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 354 rujha.client3.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 355 rujha.client3.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 356 rujha.client3.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 357 rujha.client4.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 358 rujha.client4.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 359 rujha.client4.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 360 rujha.client4.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 361 rujha.client4.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 362 rujha.client4.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 363 rujha.client4.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 364 rujha.client4.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 365 rujha.client4.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 366 rujha.client4.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 367 rujha.client4.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 368 rujha.client4.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 369 rujha.client4.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 370 rujha.client4.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 371 rujha.client4.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 372 rujha.client4.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 373 rujha.client4.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 374 rujha.client4.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 375 rujha.client4.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 376 rujha.client4.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 377 rujha.client4.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 378 rujha.client4.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 379 rujha.client4.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 380 rujha.client4.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 381 rujha.client4.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 382 rujha.client4.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 383 rujha.client4.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 384 rujha.client4.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 385 rujha.client4.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 386 rujha.client4.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 387 rujha.client4.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 388 rujha.client4.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 389 rujha.client4.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 390 rujha.client4.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 391 rujha.client4.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 392 rujha.client4.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 393 rujha.client4.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 394 rujha.client4.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 395 rujha.client4.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 396 rujha.client4.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 397 rujha.client4.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 398 rujha.client4.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 399 rujha.client4.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 400 rujha.client4.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 401 rujha.client4.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 402 rujha.client4.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 403 rujha.client4.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 404 rujha.client4.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 405 rujha.client4.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 406 rujha.server.tcp.conn-0 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 407 rujha.server.tcp.conn-0 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 408 rujha.server.tcp.conn-0 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 409 rujha.server.tcp.conn-0 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 410 rujha.server.tcp.conn-0 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 411 rujha.server.tcp.conn-0 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 412 rujha.server.tcp.conn-0 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 413 rujha.server.tcp.conn-0 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 414 rujha.server.tcp.conn-0 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 415 rujha.server.tcp.conn-0 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 416 rujha.server.tcp.conn-0 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 417 rujha.server.tcp.conn-0 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 418 rujha.server.tcp.conn-0 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 419 rujha.server.tcp.conn-0 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 420 rujha.server.tcp.conn-0 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 421 rujha.server.tcp.conn-0 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 422 rujha.server.tcp.conn-0 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 423 rujha.server.tcp.conn-0 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 424 rujha.server.tcp.conn-0 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 425 rujha.server.tcp.conn-0 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 426 rujha.server.tcp.conn-0 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 427 rujha.server.tcp.conn-0 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 428 rujha.server.tcp.conn-0 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 429 rujha.server.tcp.conn-0 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 430 rujha.server.tcp.conn-0 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 431 rujha.server.tcp.conn-0 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 432 rujha.server.tcp.conn-0 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 433 rujha.server.tcp.conn-0 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 434 rujha.server.tcp.conn-0 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 435 rujha.server.tcp.conn-1 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 436 rujha.server.tcp.conn-1 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 437 rujha.server.tcp.conn-1 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 438 rujha.server.tcp.conn-1 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 439 rujha.server.tcp.conn-1 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 440 rujha.server.tcp.conn-1 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 441 rujha.server.tcp.conn-1 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 442 rujha.server.tcp.conn-1 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 443 rujha.server.tcp.conn-1 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 444 rujha.server.tcp.conn-1 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 445 rujha.server.tcp.conn-1 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 446 rujha.server.tcp.conn-1 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 447 rujha.server.tcp.conn-1 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 448 rujha.server.tcp.conn-1 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 449 rujha.server.tcp.conn-1 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 450 rujha.server.tcp.conn-1 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 451 rujha.server.tcp.conn-1 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 452 rujha.server.tcp.conn-1 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 453 rujha.server.tcp.conn-1 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 454 rujha.server.tcp.conn-1 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 455 rujha.server.tcp.conn-1 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 456 rujha.server.tcp.conn-1 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 457 rujha.server.tcp.conn-1 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 458 rujha.server.tcp.conn-1 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 459 rujha.server.tcp.conn-1 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 460 rujha.server.tcp.conn-1 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 461 rujha.server.tcp.conn-1 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 462 rujha.server.tcp.conn-1 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 463 rujha.server.tcp.conn-1 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 464 rujha.server.tcp.conn-2 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 465 rujha.server.tcp.conn-2 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 466 rujha.server.tcp.conn-2 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 467 rujha.server.tcp.conn-2 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 468 rujha.server.tcp.conn-2 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 469 rujha.server.tcp.conn-2 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 470 rujha.server.tcp.conn-2 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 471 rujha.server.tcp.conn-2 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 472 rujha.server.tcp.conn-2 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 473 rujha.server.tcp.conn-2 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 474 rujha.server.tcp.conn-2 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 475 rujha.server.tcp.conn-2 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 476 rujha.server.tcp.conn-2 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 477 rujha.server.tcp.conn-2 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 478 rujha.server.tcp.conn-2 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 479 rujha.server.tcp.conn-2 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 480 rujha.server.tcp.conn-2 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 481 rujha.server.tcp.conn-2 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 482 rujha.server.tcp.conn-2 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 483 rujha.server.tcp.conn-2 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 484 rujha.server.tcp.conn-2 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 485 rujha.server.tcp.conn-2 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 486 rujha.server.tcp.conn-2 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 487 rujha.server.tcp.conn-2 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 488 rujha.server.tcp.conn-2 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 489 rujha.server.tcp.conn-2 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 490 rujha.server.tcp.conn-2 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 491 rujha.server.tcp.conn-2 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 492 rujha.server.tcp.conn-2 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 493 rujha.server.tcp.conn-3 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 494 rujha.server.tcp.conn-3 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 495 rujha.server.tcp.conn-3 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 496 rujha.server.tcp.conn-3 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 497 rujha.server.tcp.conn-3 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 498 rujha.server.tcp.conn-3 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 499 rujha.server.tcp.conn-3 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 500 rujha.server.tcp.conn-3 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 501 rujha.server.tcp.conn-3 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 502 rujha.server.tcp.conn-3 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 503 rujha.server.tcp.conn-3 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 504 rujha.server.tcp.conn-3 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 505 rujha.server.tcp.conn-3 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 506 rujha.server.tcp.conn-3 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 507 rujha.server.tcp.conn-3 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 508 rujha.server.tcp.conn-3 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 509 rujha.server.tcp.conn-3 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 510 rujha.server.tcp.conn-3 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 511 rujha.server.tcp.conn-3 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 512 rujha.server.tcp.conn-3 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 513 rujha.server.tcp.conn-3 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 514 rujha.server.tcp.conn-3 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 515 rujha.server.tcp.conn-3 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 516 rujha.server.tcp.conn-3 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 517 rujha.server.tcp.conn-3 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 518 rujha.server.tcp.conn-3 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 519 rujha.server.tcp.conn-3 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 520 rujha.server.tcp.conn-3 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 521 rujha.server.tcp.conn-3 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 522 rujha.server.tcp.conn-4 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 523 rujha.server.tcp.conn-4 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 524 rujha.server.tcp.conn-4 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 525 rujha.server.tcp.conn-4 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 526 rujha.server.tcp.conn-4 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 527 rujha.server.tcp.conn-4 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 528 rujha.server.tcp.conn-4 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 529 rujha.server.tcp.conn-4 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 530 rujha.server.tcp.conn-4 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 531 rujha.server.tcp.conn-4 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 532 rujha.server.tcp.conn-4 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 533 rujha.server.tcp.conn-4 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 534 rujha.server.tcp.conn-4 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 535 rujha.server.tcp.conn-4 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 536 rujha.server.tcp.conn-4 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 537 rujha.server.tcp.conn-4 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 538 rujha.server.tcp.conn-4 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 539 rujha.server.tcp.conn-4 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 540 rujha.server.tcp.conn-4 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 541 rujha.server.tcp.conn-4 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 542 rujha.server.tcp.conn-4 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 543 rujha.server.tcp.conn-4 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 544 rujha.server.tcp.conn-4 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 545 rujha.server.tcp.conn-4 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 546 rujha.server.tcp.conn-4 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 547 rujha.server.tcp.conn-4 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 548 rujha.server.tcp.conn-4 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 549 rujha.server.tcp.conn-4 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 550 rujha.server.tcp.conn-4 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 551 rujha.client.tcp.conn-10 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 552 rujha.client.tcp.conn-10 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 553 rujha.client.tcp.conn-10 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 554 rujha.client.tcp.conn-10 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 555 rujha.client.tcp.conn-10 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 556 rujha.client.tcp.conn-10 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 557 rujha.client.tcp.conn-10 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 558 rujha.client.tcp.conn-10 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 559 rujha.client.tcp.conn-10 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 560 rujha.client.tcp.conn-10 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 561 rujha.client.tcp.conn-10 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 562 rujha.client.tcp.conn-10 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 563 rujha.client.tcp.conn-10 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 564 rujha.client.tcp.conn-10 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 565 rujha.client.tcp.conn-10 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 566 rujha.client.tcp.conn-10 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 567 rujha.client.tcp.conn-10 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 568 rujha.client.tcp.conn-10 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 569 rujha.client.tcp.conn-10 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 570 rujha.client.tcp.conn-10 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 571 rujha.client.tcp.conn-10 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 572 rujha.client.tcp.conn-10 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 573 rujha.client.tcp.conn-10 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 574 rujha.client.tcp.conn-10 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 575 rujha.client.tcp.conn-10 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 576 rujha.client.tcp.conn-10 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 577 rujha.client.tcp.conn-10 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 578 rujha.client.tcp.conn-10 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 579 rujha.client.tcp.conn-10 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 580 rujha.client1.tcp.conn-11 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 581 rujha.client1.tcp.conn-11 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 582 rujha.client1.tcp.conn-11 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 583 rujha.client1.tcp.conn-11 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 584 rujha.client1.tcp.conn-11 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 585 rujha.client1.tcp.conn-11 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 586 rujha.client1.tcp.conn-11 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 587 rujha.client1.tcp.conn-11 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 588 rujha.client1.tcp.conn-11 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 589 rujha.client1.tcp.conn-11 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 590 rujha.client1.tcp.conn-11 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 591 rujha.client1.tcp.conn-11 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 592 rujha.client1.tcp.conn-11 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 593 rujha.client1.tcp.conn-11 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 594 rujha.client1.tcp.conn-11 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 595 rujha.client1.tcp.conn-11 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 596 rujha.client1.tcp.conn-11 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 597 rujha.client1.tcp.conn-11 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 598 rujha.client1.tcp.conn-11 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 599 rujha.client1.tcp.conn-11 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 600 rujha.client1.tcp.conn-11 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 601 rujha.client1.tcp.conn-11 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 602 rujha.client1.tcp.conn-11 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 603 rujha.client1.tcp.conn-11 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 604 rujha.client1.tcp.conn-11 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 605 rujha.client1.tcp.conn-11 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 606 rujha.client1.tcp.conn-11 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 607 rujha.client1.tcp.conn-11 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 608 rujha.client1.tcp.conn-11 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 609 rujha.client2.tcp.conn-12 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 610 rujha.client2.tcp.conn-12 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 611 rujha.client2.tcp.conn-12 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 612 rujha.client2.tcp.conn-12 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 613 rujha.client2.tcp.conn-12 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 614 rujha.client2.tcp.conn-12 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 615 rujha.client2.tcp.conn-12 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 616 rujha.client2.tcp.conn-12 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 617 rujha.client2.tcp.conn-12 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 618 rujha.client2.tcp.conn-12 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 619 rujha.client2.tcp.conn-12 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 620 rujha.client2.tcp.conn-12 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 621 rujha.client2.tcp.conn-12 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 622 rujha.client2.tcp.conn-12 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 623 rujha.client2.tcp.conn-12 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 624 rujha.client2.tcp.conn-12 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 625 rujha.client2.tcp.conn-12 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 626 rujha.client2.tcp.conn-12 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 627 rujha.client2.tcp.conn-12 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 628 rujha.client2.tcp.conn-12 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 629 rujha.client2.tcp.conn-12 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 630 rujha.client2.tcp.conn-12 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 631 rujha.client2.tcp.conn-12 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 632 rujha.client2.tcp.conn-12 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 633 rujha.client2.tcp.conn-12 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 634 rujha.client2.tcp.conn-12 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 635 rujha.client2.tcp.conn-12 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 636 rujha.client2.tcp.conn-12 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 637 rujha.client2.tcp.conn-12 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 638 rujha.client3.tcp.conn-13 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 639 rujha.client3.tcp.conn-13 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 640 rujha.client3.tcp.conn-13 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 641 rujha.client3.tcp.conn-13 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 642 rujha.client3.tcp.conn-13 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 643 rujha.client3.tcp.conn-13 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 644 rujha.client3.tcp.conn-13 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 645 rujha.client3.tcp.conn-13 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 646 rujha.client3.tcp.conn-13 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 647 rujha.client3.tcp.conn-13 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 648 rujha.client3.tcp.conn-13 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 649 rujha.client3.tcp.conn-13 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 650 rujha.client3.tcp.conn-13 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 651 rujha.client3.tcp.conn-13 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 652 rujha.client3.tcp.conn-13 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 653 rujha.client3.tcp.conn-13 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 654 rujha.client3.tcp.conn-13 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 655 rujha.client3.tcp.conn-13 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 656 rujha.client3.tcp.conn-13 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 657 rujha.client3.tcp.conn-13 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 658 rujha.client3.tcp.conn-13 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 659 rujha.client3.tcp.conn-13 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 660 rujha.client3.tcp.conn-13 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 661 rujha.client3.tcp.conn-13 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 662 rujha.client3.tcp.conn-13 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 663 rujha.client3.tcp.conn-13 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 664 rujha.client3.tcp.conn-13 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 665 rujha.client3.tcp.conn-13 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 666 rujha.client3.tcp.conn-13 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 667 rujha.client4.tcp.conn-14 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 668 rujha.client4.tcp.conn-14 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 669 rujha.client4.tcp.conn-14 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 670 rujha.client4.tcp.conn-14 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 671 rujha.client4.tcp.conn-14 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 672 rujha.client4.tcp.conn-14 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 673 rujha.client4.tcp.conn-14 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 674 rujha.client4.tcp.conn-14 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 675 rujha.client4.tcp.conn-14 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 676 rujha.client4.tcp.conn-14 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 677 rujha.client4.tcp.conn-14 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 678 rujha.client4.tcp.conn-14 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 679 rujha.client4.tcp.conn-14 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 680 rujha.client4.tcp.conn-14 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 681 rujha.client4.tcp.conn-14 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 682 rujha.client4.tcp.conn-14 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 683 rujha.client4.tcp.conn-14 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 684 rujha.client4.tcp.conn-14 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 685 rujha.client4.tcp.conn-14 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 686 rujha.client4.tcp.conn-14 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 687 rujha.client4.tcp.conn-14 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 688 rujha.client4.tcp.conn-14 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 689 rujha.client4.tcp.conn-14 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 690 rujha.client4.tcp.conn-14 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 691 rujha.client4.tcp.conn-14 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 692 rujha.client4.tcp.conn-14 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 693 rujha.client4.tcp.conn-14 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 694 rujha.client4.tcp.conn-14 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 695 rujha.client4.tcp.conn-14 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 696 rujha.server.tcp.conn-15 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 697 rujha.server.tcp.conn-15 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 698 rujha.server.tcp.conn-15 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 699 rujha.server.tcp.conn-15 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 700 rujha.server.tcp.conn-15 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 701 rujha.server.tcp.conn-15 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 702 rujha.server.tcp.conn-15 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 703 rujha.server.tcp.conn-15 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 704 rujha.server.tcp.conn-15 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 705 rujha.server.tcp.conn-15 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 706 rujha.server.tcp.conn-15 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 707 rujha.server.tcp.conn-15 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 708 rujha.server.tcp.conn-15 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 709 rujha.server.tcp.conn-15 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 710 rujha.server.tcp.conn-15 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 711 rujha.server.tcp.conn-15 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 712 rujha.server.tcp.conn-15 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 713 rujha.server.tcp.conn-15 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 714 rujha.server.tcp.conn-15 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 715 rujha.server.tcp.conn-15 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 716 rujha.server.tcp.conn-15 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 717 rujha.server.tcp.conn-15 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 718 rujha.server.tcp.conn-15 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 719 rujha.server.tcp.conn-15 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 720 rujha.server.tcp.conn-15 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 721 rujha.server.tcp.conn-15 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 722 rujha.server.tcp.conn-15 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 723 rujha.server.tcp.conn-15 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 724 rujha.server.tcp.conn-15 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 725 rujha.server.tcp.conn-16 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 726 rujha.server.tcp.conn-16 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 727 rujha.server.tcp.conn-16 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 728 rujha.server.tcp.conn-16 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 729 rujha.server.tcp.conn-16 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 730 rujha.server.tcp.conn-16 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 731 rujha.server.tcp.conn-16 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 732 rujha.server.tcp.conn-16 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 733 rujha.server.tcp.conn-16 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 734 rujha.server.tcp.conn-16 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 735 rujha.server.tcp.conn-16 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 736 rujha.server.tcp.conn-16 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 737 rujha.server.tcp.conn-16 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 738 rujha.server.tcp.conn-16 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 739 rujha.server.tcp.conn-16 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 740 rujha.server.tcp.conn-16 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 741 rujha.server.tcp.conn-16 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 742 rujha.server.tcp.conn-16 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 743 rujha.server.tcp.conn-16 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 744 rujha.server.tcp.conn-16 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 745 rujha.server.tcp.conn-16 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 746 rujha.server.tcp.conn-16 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 747 rujha.server.tcp.conn-16 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 748 rujha.server.tcp.conn-16 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 749 rujha.server.tcp.conn-16 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 750 rujha.server.tcp.conn-16 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 751 rujha.server.tcp.conn-16 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 752 rujha.server.tcp.conn-16 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 753 rujha.server.tcp.conn-16 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 754 rujha.server.tcp.conn-17 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 755 rujha.server.tcp.conn-17 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 756 rujha.server.tcp.conn-17 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 757 rujha.server.tcp.conn-17 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 758 rujha.server.tcp.conn-17 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 759 rujha.server.tcp.conn-17 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 760 rujha.server.tcp.conn-17 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 761 rujha.server.tcp.conn-17 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 762 rujha.server.tcp.conn-17 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 763 rujha.server.tcp.conn-17 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 764 rujha.server.tcp.conn-17 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 765 rujha.server.tcp.conn-17 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 766 rujha.server.tcp.conn-17 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 767 rujha.server.tcp.conn-17 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 768 rujha.server.tcp.conn-17 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 769 rujha.server.tcp.conn-17 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 770 rujha.server.tcp.conn-17 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 771 rujha.server.tcp.conn-17 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 772 rujha.server.tcp.conn-17 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 773 rujha.server.tcp.conn-17 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 774 rujha.server.tcp.conn-17 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 775 rujha.server.tcp.conn-17 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 776 rujha.server.tcp.conn-17 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 777 rujha.server.tcp.conn-17 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 778 rujha.server.tcp.conn-17 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 779 rujha.server.tcp.conn-17 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 780 rujha.server.tcp.conn-17 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 781 rujha.server.tcp.conn-17 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 782 rujha.server.tcp.conn-17 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 783 rujha.server.tcp.conn-18 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 784 rujha.server.tcp.conn-18 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 785 rujha.server.tcp.conn-18 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 786 rujha.server.tcp.conn-18 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 787 rujha.server.tcp.conn-18 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 788 rujha.server.tcp.conn-18 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 789 rujha.server.tcp.conn-18 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 790 rujha.server.tcp.conn-18 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 791 rujha.server.tcp.conn-18 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 792 rujha.server.tcp.conn-18 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 793 rujha.server.tcp.conn-18 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 794 rujha.server.tcp.conn-18 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 795 rujha.server.tcp.conn-18 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 796 rujha.server.tcp.conn-18 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 797 rujha.server.tcp.conn-18 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 798 rujha.server.tcp.conn-18 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 799 rujha.server.tcp.conn-18 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 800 rujha.server.tcp.conn-18 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 801 rujha.server.tcp.conn-18 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 802 rujha.server.tcp.conn-18 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 803 rujha.server.tcp.conn-18 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 804 rujha.server.tcp.conn-18 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 805 rujha.server.tcp.conn-18 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 806 rujha.server.tcp.conn-18 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 807 rujha.server.tcp.conn-18 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 808 rujha.server.tcp.conn-18 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 809 rujha.server.tcp.conn-18 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 810 rujha.server.tcp.conn-18 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 811 rujha.server.tcp.conn-18 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 812 rujha.server.tcp.conn-19 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 813 rujha.server.tcp.conn-19 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 814 rujha.server.tcp.conn-19 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 815 rujha.server.tcp.conn-19 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 816 rujha.server.tcp.conn-19 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 817 rujha.server.tcp.conn-19 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 818 rujha.server.tcp.conn-19 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 819 rujha.server.tcp.conn-19 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 820 rujha.server.tcp.conn-19 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 821 rujha.server.tcp.conn-19 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 822 rujha.server.tcp.conn-19 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 823 rujha.server.tcp.conn-19 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 824 rujha.server.tcp.conn-19 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 825 rujha.server.tcp.conn-19 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 826 rujha.server.tcp.conn-19 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 827 rujha.server.tcp.conn-19 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 828 rujha.server.tcp.conn-19 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 829 rujha.server.tcp.conn-19 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 830 rujha.server.tcp.conn-19 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 831 rujha.server.tcp.conn-19 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 832 rujha.server.tcp.conn-19 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 833 rujha.server.tcp.conn-19 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 834 rujha.server.tcp.conn-19 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 835 rujha.server.tcp.conn-19 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 836 rujha.server.tcp.conn-19 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 837 rujha.server.tcp.conn-19 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 838 rujha.server.tcp.conn-19 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 839 rujha.server.tcp.conn-19 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 840 rujha.server.tcp.conn-19 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+0	149836 205 51 135 1.00000581 1.00001743 10 28 44 360 13600
+1	150041 205 41 115 1.00000581 1.00001743 10 46 46 460 21160
+7	150246 84 0 136 0 1.00001743 7 0 0 0 0
+8	150330 84 0 136 0 1.00001743 7 0 0 0 0
+9	150414 39 56 136 1.00000581 1.00001743 2 0 0 0 0
+10	150453 45 56 136 1.00000581 1.00001743 2 368 496 864 381440
+11	150498 128 56 56 0.1 1 10 0 0 0 0
+12	150626 45 56 136 1.00000581 1.00001743 2 368 496 864 381440
+13	150671 128 56 56 0.1 1 10 0 0 0 0
+18	150799 102 0 146 0 1.00002319 6 0 1 2 2
+19	150901 128 66 66 0.1 1 10 0 0 0 0
+20	151029 128 56 56 0.1 1 10 0 0 0 0
+21	151157 43 66 146 1.00001157 1.00002319 2 64 64 128 8192
+22	151200 43 36 106 1.00000581 1.00001743 2 64 64 128 8192
+23	151243 43 36 106 1.00000581 1.00001743 2 64 64 128 8192
+26	151286 43 56 136 1.00000581 1.00001743 2 46 62 108 5960
+32	151329 91 0 137 0 1.00001743 7 0 0 0 0
+33	151420 91 0 137 0 1.00001743 7 0 0 0 0
+34	151511 41 57 137 1.00000581 1.00001743 2 0 0 0 0
+35	151552 45 57 137 1.00000581 1.00001743 2 368 496 864 381440
+36	151597 128 57 57 0.1 1 10 0 0 0 0
+37	151725 45 57 137 1.00000581 1.00001743 2 368 496 864 381440
+38	151770 128 57 57 0.1 1 10 0 0 0 0
+43	151898 102 0 147 0 1.00002319 6 0 1 2 2
+44	152000 128 67 67 0.1 1 10 0 0 0 0
+45	152128 128 57 57 0.1 1 10 0 0 0 0
+46	152256 43 67 147 1.00001157 1.00002319 2 64 64 128 8192
+47	152299 43 37 107 1.00000581 1.00001743 2 64 64 128 8192
+48	152342 43 37 107 1.00000581 1.00001743 2 64 64 128 8192
+51	152385 43 57 137 1.00000581 1.00001743 2 46 62 108 5960
+57	152428 91 0 138 0 1.00001743 7 0 0 0 0
+58	152519 91 0 138 0 1.00001743 7 0 0 0 0
+59	152610 41 58 138 1.00000581 1.00001743 2 0 0 0 0
+60	152651 45 58 138 1.00000581 1.00001743 2 368 496 864 381440
+61	152696 128 58 58 0.1 1 10 0 0 0 0
+62	152824 45 58 138 1.00000581 1.00001743 2 368 496 864 381440
+63	152869 128 58 58 0.1 1 10 0 0 0 0
+68	152997 102 0 148 0 1.00002319 6 0 1 2 2
+69	153099 128 68 68 0.1 1 10 0 0 0 0
+70	153227 128 58 58 0.1 1 10 0 0 0 0
+71	153355 43 68 148 1.00001157 1.00002319 2 64 64 128 8192
+72	153398 43 38 108 1.00000581 1.00001743 2 64 64 128 8192
+73	153441 43 38 108 1.00000581 1.00001743 2 64 64 128 8192
+76	153484 43 58 138 1.00000581 1.00001743 2 46 62 108 5960
+82	153527 91 0 139 0 1.00001743 7 0 0 0 0
+83	153618 91 0 139 0 1.00001743 7 0 0 0 0
+84	153709 41 59 139 1.00000581 1.00001743 2 0 0 0 0
+85	153750 45 59 139 1.00000581 1.00001743 2 368 496 864 381440
+86	153795 128 59 59 0.1 1 10 0 0 0 0
+87	153923 45 59 139 1.00000581 1.00001743 2 368 496 864 381440
+88	153968 128 59 59 0.1 1 10 0 0 0 0
+93	154096 102 0 149 0 1.00002319 6 0 1 2 2
+94	154198 128 69 69 0.1 1 10 0 0 0 0
+95	154326 128 59 59 0.1 1 10 0 0 0 0
+96	154454 43 69 149 1.00001157 1.00002319 2 64 64 128 8192
+97	154497 43 39 109 1.00000581 1.00001743 2 64 64 128 8192
+98	154540 43 39 109 1.00000581 1.00001743 2 64 64 128 8192
+101	154583 45 59 139 1.00000581 1.00001743 2 46 62 108 5960
+107	154628 98 0 140 0 1.00001743 7 0 0 0 0
+108	154726 98 0 140 0 1.00001743 7 0 0 0 0
+109	154824 43 60 140 1.00000581 1.00001743 2 0 0 0 0
+110	154867 47 60 140 1.00000581 1.00001743 2 368 496 864 381440
+111	154914 138 60 60 0.1 1 10 0 0 0 0
+112	155052 47 60 140 1.00000581 1.00001743 2 368 496 864 381440
+113	155099 138 60 60 0.1 1 10 0 0 0 0
+118	155237 108 0 150 0 1.00002319 6 0 1 2 2
+119	155345 138 70 70 0.1 1 10 0 0 0 0
+120	155483 138 60 60 0.1 1 10 0 0 0 0
+121	155621 45 70 150 1.00001157 1.00002319 2 64 64 128 8192
+122	155666 45 40 110 1.00000581 1.00001743 2 64 64 128 8192
+123	155711 45 40 110 1.00000581 1.00001743 2 64 64 128 8192
+126	155756 45 60 140 1.00000581 1.00001743 2 46 62 108 5960
+140	155801 110 46 50 1.00000581 1.00000581 5 28 28 140 3920
+143	155911 11 0 0 0 0 1 0 0 0 0
+144	155922 11 0 0 0 0 1 0 0 0 0
+145	155933 11 0 0 0 0 1 0 0 0 0
+161	155944 35 21 86 1 1.00001162 2 28 44 72 2720
+162	155979 22 76 76 1.00001162 1.00001162 1 46 46 46 2116
+168	156001 88 0 91 0 1.00001162 7 0 0 0 0
+169	156089 88 0 91 0 1.00001162 7 0 0 0 0
+170	156177 33 26 91 1 1.00001162 2 0 0 0 0
+171	156210 37 26 91 1 1.00001162 2 368 496 864 381440
+172	156247 138 26 26 0.1 1 10 0 0 0 0
+173	156385 37 26 91 1 1.00001162 2 368 496 864 381440
+174	156422 138 26 26 0.1 1 10 0 0 0 0
+179	156560 98 0 101 0 1.00001738 6 0 1 2 2
+180	156658 138 31 31 0.1 1 10 0 0 0 0
+181	156796 138 26 26 0.1 1 10 0 0 0 0
+182	156934 45 31 101 1.00000576 1.00001738 2 64 64 128 8192
+183	156979 45 71 151 1.00001162 1.00002324 2 64 64 128 8192
+184	157024 45 71 151 1.00001162 1.00002324 2 64 64 128 8192
+187	157069 35 26 91 1 1.00001162 2 46 62 108 5960
+200	157104 13 16 16 1 1 1 28 28 28 784
+204	157117 11 0 0 0 0 1 0 0 0 0
+205	157128 11 0 0 0 0 1 0 0 0 0
+206	157139 11 0 0 0 0 1 0 0 0 0
+210	157150 35 22 87 1 1.00001162 2 28 44 72 2720
+211	157185 22 77 77 1.00001162 1.00001162 1 46 46 46 2116
+217	157207 88 0 92 0 1.00001162 7 0 0 0 0
+218	157295 88 0 92 0 1.00001162 7 0 0 0 0
+219	157383 33 27 92 1 1.00001162 2 0 0 0 0
+220	157416 37 27 92 1 1.00001162 2 368 496 864 381440
+221	157453 138 27 27 0.1 1 10 0 0 0 0
+222	157591 37 27 92 1 1.00001162 2 368 496 864 381440
+223	157628 138 27 27 0.1 1 10 0 0 0 0
+228	157766 98 0 102 0 1.00001738 6 0 1 2 2
+229	157864 138 32 32 0.1 1 10 0 0 0 0
+230	158002 138 27 27 0.1 1 10 0 0 0 0
+231	158140 45 32 102 1.00000576 1.00001738 2 64 64 128 8192
+232	158185 45 72 152 1.00001162 1.00002324 2 64 64 128 8192
+233	158230 45 72 152 1.00001162 1.00002324 2 64 64 128 8192
+236	158275 35 27 92 1 1.00001162 2 46 62 108 5960
+249	158310 13 17 17 1 1 1 28 28 28 784
+253	158323 11 0 0 0 0 1 0 0 0 0
+254	158334 11 0 0 0 0 1 0 0 0 0
+255	158345 11 0 0 0 0 1 0 0 0 0
+259	158356 35 23 88 1 1.00001162 2 28 44 72 2720
+260	158391 22 78 78 1.00001162 1.00001162 1 46 46 46 2116
+266	158413 88 0 93 0 1.00001162 7 0 0 0 0
+267	158501 88 0 93 0 1.00001162 7 0 0 0 0
+268	158589 33 28 93 1 1.00001162 2 0 0 0 0
+269	158622 37 28 93 1 1.00001162 2 368 496 864 381440
+270	158659 138 28 28 0.1 1 10 0 0 0 0
+271	158797 37 28 93 1 1.00001162 2 368 496 864 381440
+272	158834 138 28 28 0.1 1 10 0 0 0 0
+277	158972 98 0 103 0 1.00001738 6 0 1 2 2
+278	159070 138 33 33 0.1 1 10 0 0 0 0
+279	159208 138 28 28 0.1 1 10 0 0 0 0
+280	159346 45 33 103 1.00000576 1.00001738 2 64 64 128 8192
+281	159391 22 73 73 1.00001162 1.00001162 1 64 64 64 4096
+282	159413 22 73 73 1.00001162 1.00001162 1 64 64 64 4096
+285	159435 35 28 93 1 1.00001162 2 46 62 108 5960
+298	159470 13 18 18 1 1 1 28 28 28 784
+302	159483 11 0 0 0 0 1 0 0 0 0
+303	159494 11 0 0 0 0 1 0 0 0 0
+304	159505 11 0 0 0 0 1 0 0 0 0
+308	159516 35 24 89 1 1.00001162 2 28 44 72 2720
+309	159551 22 79 79 1.00001162 1.00001162 1 46 46 46 2116
+315	159573 88 0 94 0 1.00001162 7 0 0 0 0
+316	159661 88 0 94 0 1.00001162 7 0 0 0 0
+317	159749 33 29 94 1 1.00001162 2 0 0 0 0
+318	159782 37 29 94 1 1.00001162 2 368 496 864 381440
+319	159819 138 29 29 0.1 1 10 0 0 0 0
+320	159957 37 29 94 1 1.00001162 2 368 496 864 381440
+321	159994 138 29 29 0.1 1 10 0 0 0 0
+326	160132 98 0 104 0 1.00001738 6 0 1 2 2
+327	160230 138 34 34 0.1 1 10 0 0 0 0
+328	160368 138 29 29 0.1 1 10 0 0 0 0
+329	160506 45 34 104 1.00000576 1.00001738 2 64 64 128 8192
+330	160551 22 74 74 1.00001162 1.00001162 1 64 64 64 4096
+331	160573 22 74 74 1.00001162 1.00001162 1 64 64 64 4096
+334	160595 35 29 94 1 1.00001162 2 46 62 108 5960
+347	160630 13 19 19 1 1 1 28 28 28 784
+351	160643 11 0 0 0 0 1 0 0 0 0
+352	160654 11 0 0 0 0 1 0 0 0 0
+353	160665 11 0 0 0 0 1 0 0 0 0
+357	160676 35 25 90 1 1.00001162 2 28 44 72 2720
+358	160711 22 80 80 1.00001162 1.00001162 1 46 46 46 2116
+364	160733 88 0 95 0 1.00001162 7 0 0 0 0
+365	160821 88 0 95 0 1.00001162 7 0 0 0 0
+366	160909 33 30 95 1 1.00001162 2 0 0 0 0
+367	160942 37 30 95 1 1.00001162 2 368 496 864 381440
+368	160979 138 30 30 0.1 1 10 0 0 0 0
+369	161117 37 30 95 1 1.00001162 2 368 496 864 381440
+370	161154 138 30 30 0.1 1 10 0 0 0 0
+375	161292 98 0 105 0 1.00001738 6 0 1 2 2
+376	161390 138 35 35 0.1 1 10 0 0 0 0
+377	161528 138 30 30 0.1 1 10 0 0 0 0
+378	161666 45 35 105 1.00000576 1.00001738 2 64 64 128 8192
+379	161711 22 75 75 1.00001162 1.00001162 1 64 64 64 4096
+380	161733 22 75 75 1.00001162 1.00001162 1 64 64 64 4096
+383	161755 35 30 95 1 1.00001162 2 46 62 108 5960
+396	161790 13 20 20 1 1 1 28 28 28 784
+400	161803 11 0 0 0 0 1 0 0 0 0
+401	161814 11 0 0 0 0 1 0 0 0 0
+402	161825 11 0 0 0 0 1 0 0 0 0
+406	161836 11 1 1 0 0 1 2 2 2 4
+412	161847 27 121 121 1.00001743 1.00001743 1 250000 250000 250000 62500000000
+413	161874 22 121 121 1.00001743 1.00001743 1 0 0 0 0
+424	161896 22 121 121 1.00001743 1.00001743 1 0 0 0 0
+435	161918 11 2 2 0 0 1 2 2 2 4
+441	161929 27 122 122 1.00001743 1.00001743 1 250000 250000 250000 62500000000
+442	161956 22 122 122 1.00001743 1.00001743 1 0 0 0 0
+453	161978 22 122 122 1.00001743 1.00001743 1 0 0 0 0
+464	162000 11 3 3 0 0 1 2 2 2 4
+470	162011 27 123 123 1.00001743 1.00001743 1 250000 250000 250000 62500000000
+471	162038 22 123 123 1.00001743 1.00001743 1 0 0 0 0
+482	162060 22 123 123 1.00001743 1.00001743 1 0 0 0 0
+493	162082 11 4 4 0 0 1 2 2 2 4
+499	162093 27 124 124 1.00001743 1.00001743 1 250000 250000 250000 62500000000
+500	162120 22 124 124 1.00001743 1.00001743 1 0 0 0 0
+511	162142 22 124 124 1.00001743 1.00001743 1 0 0 0 0
+522	162164 11 5 5 0 0 1 2 2 2 4
+528	162175 27 125 125 1.00001743 1.00001743 1 250000 250000 250000 62500000000
+529	162202 22 125 125 1.00001743 1.00001743 1 0 0 0 0
+540	162224 22 125 125 1.00001743 1.00001743 1 0 0 0 0
+551	162246 12 11 11 1 1 1 3 3 3 9
+553	162258 15 11 11 1 1 1 7504 7504 7504 56310016
+554	162273 15 11 11 1 1 1 7504 7504 7504 56310016
+556	162288 12 11 11 1 1 1 0 0 0 0
+567	162300 12 11 11 1 1 1 0 0 0 0
+580	162312 12 12 12 1 1 1 3 3 3 9
+582	162324 15 12 12 1 1 1 7504 7504 7504 56310016
+583	162339 15 12 12 1 1 1 7504 7504 7504 56310016
+585	162354 12 12 12 1 1 1 0 0 0 0
+596	162366 12 12 12 1 1 1 0 0 0 0
+609	162378 12 13 13 1 1 1 3 3 3 9
+611	162390 15 13 13 1 1 1 7504 7504 7504 56310016
+612	162405 15 13 13 1 1 1 7504 7504 7504 56310016
+614	162420 12 13 13 1 1 1 0 0 0 0
+625	162432 12 13 13 1 1 1 0 0 0 0
+638	162444 12 14 14 1 1 1 3 3 3 9
+640	162456 15 14 14 1 1 1 7504 7504 7504 56310016
+641	162471 15 14 14 1 1 1 7504 7504 7504 56310016
+643	162486 12 14 14 1 1 1 0 0 0 0
+654	162498 12 14 14 1 1 1 0 0 0 0
+667	162510 12 15 15 1 1 1 3 3 3 9
+669	162522 15 15 15 1 1 1 7504 7504 7504 56310016
+670	162537 15 15 15 1 1 1 7504 7504 7504 56310016
+672	162552 12 15 15 1 1 1 0 0 0 0
+683	162564 12 15 15 1 1 1 0 0 0 0
+696	162576 22 121 121 1.00001743 1.00001743 1 4 4 4 16
+697	162598 25 121 121 1.00001743 1.00001743 1 7504 7504 7504 56310016
+698	162623 25 121 121 1.00001743 1.00001743 1 7504 7504 7504 56310016
+699	162648 54 121 121 1.00001743 1.00001743 2 257505 257505 515010 132617650050
+701	162702 27 121 121 1.00001743 1.00001743 1 250001 250001 250001 62500500001
+712	162729 22 121 121 1.00001743 1.00001743 1 0 0 0 0
+725	162751 22 122 122 1.00001743 1.00001743 1 4 4 4 16
+726	162773 25 122 122 1.00001743 1.00001743 1 7504 7504 7504 56310016
+727	162798 25 122 122 1.00001743 1.00001743 1 7504 7504 7504 56310016
+728	162823 54 122 122 1.00001743 1.00001743 2 257505 257505 515010 132617650050
+730	162877 27 122 122 1.00001743 1.00001743 1 250001 250001 250001 62500500001
+741	162904 22 122 122 1.00001743 1.00001743 1 0 0 0 0
+754	162926 22 123 123 1.00001743 1.00001743 1 4 4 4 16
+755	162948 25 123 123 1.00001743 1.00001743 1 7504 7504 7504 56310016
+756	162973 25 123 123 1.00001743 1.00001743 1 7504 7504 7504 56310016
+757	162998 54 123 123 1.00001743 1.00001743 2 257505 257505 515010 132617650050
+759	163052 27 123 123 1.00001743 1.00001743 1 250001 250001 250001 62500500001
+770	163079 22 123 123 1.00001743 1.00001743 1 0 0 0 0
+783	163101 22 124 124 1.00001743 1.00001743 1 4 4 4 16
+784	163123 25 124 124 1.00001743 1.00001743 1 7504 7504 7504 56310016
+785	163148 25 124 124 1.00001743 1.00001743 1 7504 7504 7504 56310016
+786	163173 54 124 124 1.00001743 1.00001743 2 257505 257505 515010 132617650050
+788	163227 27 124 124 1.00001743 1.00001743 1 250001 250001 250001 62500500001
+799	163254 22 124 124 1.00001743 1.00001743 1 0 0 0 0
+812	163276 22 125 125 1.00001743 1.00001743 1 4 4 4 16
+813	163298 25 125 125 1.00001743 1.00001743 1 7504 7504 7504 56310016
+814	163323 25 125 125 1.00001743 1.00001743 1 7504 7504 7504 56310016
+815	163348 54 125 125 1.00001743 1.00001743 2 257505 257505 515010 132617650050
+817	163402 27 125 125 1.00001743 1.00001743 1 250001 250001 250001 62500500001
+828	163429 22 125 125 1.00001743 1.00001743 1 0 0 0 0
